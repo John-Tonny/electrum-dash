@@ -45,9 +45,9 @@ def inv_dict(d):
     return {v: k for k, v in d.items()}
 
 
-base_units = {'DASH':8, 'mDASH':5, 'uDASH':2, 'duffs':0}
+base_units = {'VP':8, 'mVP':5, 'uVP':2, 'duffs':0}
 base_units_inverse = inv_dict(base_units)
-base_units_list = ['DASH', 'mDASH', 'uDASH', 'duffs']  # list(dict) does not guarantee order
+base_units_list = ['VP', 'mVP', 'uVP', 'duffs']  # list(dict) does not guarantee order
 
 
 def decimal_point_to_base_unit_name(dp: int) -> str:
@@ -140,7 +140,7 @@ class Satoshis(object):
         return 'Duffs(%d)'%self.value
 
     def __str__(self):
-        return format_satoshis(self.value) + " DASH"
+        return format_satoshis(self.value) + " VP"
 
 class Fiat(object):
     __slots__ = ('value', 'ccy')
@@ -592,18 +592,12 @@ def time_difference(distance_in_time, include_seconds):
         return "over %d years" % (round(distance_in_minutes / 525600))
 
 mainnet_block_explorers = {
-    'Dash.org': ('https://explorer.dash.org/',
-                       {'tx': 'tx/', 'addr': 'address/'}),
-    'Bchain.info': ('https://bchain.info/DASH/',
-                       {'tx': 'tx/', 'addr': 'addr/'}),
-    'system default': ('blockchain:/',
+    'VPubChain.net': ('https://www.vpubchain.net/insight/',
                        {'tx': 'tx/', 'addr': 'address/'}),
 }
 
 testnet_block_explorers = {
-    'Dash.org': ('https://test.insight.dash.siampm.com/',
-                       {'tx': 'tx/', 'addr': 'address/'}),
-    'system default': ('blockchain:/',
+    'VPubChain.net': ('https://www.vpubchain.net/insight/',
                        {'tx': 'tx/', 'addr': 'address/'}),
 }
 
@@ -612,7 +606,7 @@ def block_explorer_info():
     return testnet_block_explorers if constants.net.TESTNET else mainnet_block_explorers
 
 def block_explorer(config):
-    return config.get('block_explorer', 'Dash.org')
+    return config.get('block_explorer', 'VPubChain.net')
 
 def block_explorer_tuple(config):
     return block_explorer_info().get(block_explorer(config))

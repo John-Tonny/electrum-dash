@@ -69,7 +69,7 @@ class CustomInstallCommand(install):
 
 
 setup(
-    name="Dash-Electrum",
+    name="VPubChain-Electrum",
     version=version.ELECTRUM_VERSION,
     install_requires=requirements,
     extras_require=extras_require,
@@ -90,12 +90,12 @@ setup(
     },
     scripts=['electrum_dash/electrum-dash'],
     data_files=data_files,
-    description="Lightweight Dashpay Wallet",
-    maintainer="akhavr",
-    maintainer_email="akhavr@khavr.com",
+    description="Lightweight VPubChain Wallet",
+    maintainer="vpubchain",
+    maintainer_email="szlhtao@tom.com",
     license="MIT License",
-    url="https://electrum.dash.org",
-    long_description="""Lightweight Dashpay Wallet""",
+    url="https://www.vpubchain.net/insight",
+    long_description="""Lightweight VPubChain Wallet""",
     cmdclass={
         'install': CustomInstallCommand,
     },
