@@ -7,10 +7,10 @@
 ;--------------------------------
 ;Variables
 
-  !define PRODUCT_NAME "Dash-Electrum"
-  !define PREV_PROD_NAME "Electrum-DASH"
-  !define PRODUCT_WEB_SITE "https://github.com/akhavr/electrum-dash"
-  !define PRODUCT_PUBLISHER "Electrum Technologies GmbH"
+  !define PRODUCT_NAME "VPubChain-Electrum"
+  !define PREV_PROD_NAME "Electrum-VPubChain"
+  !define PRODUCT_WEB_SITE "https://www.vpubchain.net/insight"
+  !define PRODUCT_PUBLISHER "VPubChain Technologies GmbH"
   !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
   !define PREV_PROD_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PREV_PROD_NAME}"
   !define BUILD_ARCH "${WINEARCH}"
@@ -117,7 +117,7 @@ Function .onInit
     ${EndIf}
 FunctionEnd
 
-Section "Dash-Electrum" SectionDE
+Section "VPubChain-Electrum" SectionDE
   SetOutPath $INSTDIR
 
   ;Uninstall prev product name versions
@@ -153,20 +153,20 @@ Section "Dash-Electrum" SectionDE
 
   ;Create desktop shortcut
   DetailPrint "Creating desktop shortcut..."
-  CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\electrum-dash-${PRODUCT_VERSION}.exe" ""
+  CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\electrum-vpubchain-${PRODUCT_VERSION}.exe" ""
 
   ;Create start-menu items
   DetailPrint "Creating start-menu items..."
   CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\electrum-dash-${PRODUCT_VERSION}.exe" "" "$INSTDIR\electrum-dash-${PRODUCT_VERSION}.exe" 0
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME} Testnet.lnk" "$INSTDIR\electrum-dash-${PRODUCT_VERSION}.exe" "--testnet" "$INSTDIR\electrum-dash-${PRODUCT_VERSION}.exe" 0
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\electrum-vpubchain-${PRODUCT_VERSION}.exe" "" "$INSTDIR\electrum-vpubchain-${PRODUCT_VERSION}.exe" 0
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME} Testnet.lnk" "$INSTDIR\electrum-vpubchain-${PRODUCT_VERSION}.exe" "--testnet" "$INSTDIR\electrum-vpubchain-${PRODUCT_VERSION}.exe" 0
 
 
   ;Links dash: URI's to Electrum
   WriteRegStr HKCU "Software\Classes\dash" "" "URL:dash Protocol"
   WriteRegStr HKCU "Software\Classes\dash" "URL Protocol" ""
-  WriteRegStr HKCU "Software\Classes\dash" "DefaultIcon" "$\"$INSTDIR\electrum-dash.ico, 0$\""
+  WriteRegStr HKCU "Software\Classes\dash" "DefaultIcon" "$\"$INSTDIR\electrum-vpubchain.ico, 0$\""
   WriteRegStr HKCU "Software\Classes\dash\shell\open\command" "" "$\"$INSTDIR\electrum-dash-${PRODUCT_VERSION}.exe$\" $\"%1$\""
 
   ;Adds an uninstaller possibility to Windows Uninstall or change a program section
@@ -175,7 +175,7 @@ Section "Dash-Electrum" SectionDE
   WriteRegStr HKCU "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr HKCU "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr HKCU "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
-  WriteRegStr HKCU "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\electrum-dash.ico"
+  WriteRegStr HKCU "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\electrum-vpubchain.ico"
 
   ;Fixes Windows broken size estimates
   ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
@@ -192,7 +192,7 @@ SectionEnd
 
 ;--------------------------------
 ;Descriptions
-LangString DESC_DE ${LANG_ENGLISH} "Dash-Electrum Wallet"
+LangString DESC_DE ${LANG_ENGLISH} "VPubChain-Electrum Wallet"
 LangString DESC_TOR ${LANG_ENGLISH} "The Tor Project Socks Proxy"
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
