@@ -23,6 +23,11 @@ matrix:
   - if: NOT tag =~ .+
     os: linux
     python: "3.6"
+env:
+global:
+    TRAVIS_TAG='3.2.3.1'
+    TRAVIS_OS_NAME='linux'
+    TRAVIS_PYTHON_VERSION='3.5'
 before_install:
 - source contrib/dash/travis/electrum_dash_version_env.sh
 - echo electrum-dash version is $DASH_ELECTRUM_VERSION
