@@ -1,5 +1,17 @@
 {
-    "mydash1.chain": {
+    "dnsseed4.jiulingo.net": {
+        "pruning": "-",
+        "s": "50002",
+        "t": "50001",
+        "version": "1.2"
+     }
+    "dnsseed5.jiulingo.net": {
+        "pruning": "-",
+        "s": "50002",
+        "t": "50001",
+        "version": "1.2"
+     }
+    "132.232.59.12": {
         "pruning": "-",
         "s": "50002",
         "t": "50001",
