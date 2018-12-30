@@ -42,8 +42,8 @@ class BitcoinMainnet:
     TESTNET = False
     WIF_PREFIX = 204
     ADDRTYPE_P2PKH = 76
-    ADDRTYPE_P2SH = 16
-    GENESIS = "00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6"
+    ADDRTYPE_P2SH = 26
+    GENESIS = "00000d6f81d96969bfa1f195a1e349a6129c720c50a255c50ca38163d8286579"
     DEFAULT_PORTS = {'t': '50001', 's': '50002'}
     DEFAULT_SERVERS = read_json('servers.json', {})
     CHECKPOINTS = read_json('checkpoints.json', [])
