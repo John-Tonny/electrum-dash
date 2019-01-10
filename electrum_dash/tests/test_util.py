@@ -63,7 +63,9 @@ class TestUtil(SequentialTestCase):
         self.assertEqual(expected, result)
 
     def test_parse_URI_address(self):
-        self._do_test_parse_URI('dash:XfTA9qgYmaEHfWhUakwcoTtyquez8SowY1',
+        #self._do_test_parse_URI('dash:XfTA9qgYmaEHfWhUakwcoTtyquez8SowY1',
+        #                        {'address': 'XfTA9qgYmaEHfWhUakwcoTtyquez8SowY1'})
+        self._do_test_parse_URI('vpub:XfTA9qgYmaEHfWhUakwcoTtyquez8SowY1',
                                 {'address': 'XfTA9qgYmaEHfWhUakwcoTtyquez8SowY1'})
 
     def test_parse_URI_only_address(self):

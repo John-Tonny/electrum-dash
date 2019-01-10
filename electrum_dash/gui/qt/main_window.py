@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 #
 # Electrum - lightweight Bitcoin client
 # Copyright (C) 2012 thomasv@gitorious
@@ -405,7 +405,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.setGeometry(100, 100, 840, 400)
 
     def watching_only_changed(self):
-        name = "Dash-Electrum Testnet" if constants.net.TESTNET else "Dash-Electrum"
+        name = "VPubChain-Wallet Testnet" if constants.net.TESTNET else "VPubChain-Wallet"
         title = '%s %s  -  %s' % (name, self.wallet.electrum_version,
                                         self.wallet.basename())
         extra = [self.wallet.storage.get('wallet_type', '?')]
@@ -452,7 +452,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 shutil.copy2(path, new_path)
                 self.show_message(_("A copy of your wallet file was created in")+" '%s'" % str(new_path), title=_("Wallet backup created"))
             except BaseException as reason:
-                self.show_critical(_("Dash-Electrum was unable to copy your wallet file to the specified location.") + "\n" + str(reason), title=_("Unable to create backup"))
+                self.show_critical(_("VPubChain-Wallet was unable to copy your wallet file to the specified location.") + "\n" + str(reason), title=_("Unable to create backup"))
 
     def update_recently_visited(self, filename):
         recent = self.config.get('recently_open', [])
@@ -554,7 +554,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         tools_menu = menubar.addMenu(_("&Tools"))
 
         # Settings / Preferences are all reserved keywords in macOS using this as work around
-        tools_menu.addAction(_("Dash-Electrum preferences") if sys.platform == 'darwin' else _("Preferences"), self.settings_dialog)
+        tools_menu.addAction(_("VPubChain-Wallet preferences") if sys.platform == 'darwin' else _("Preferences"), self.settings_dialog)
         tools_menu.addAction(_("&Network"), lambda: self.gui_object.show_network_dialog(self))
         tools_menu.addAction(_("&Plugins"), self.plugins_dialog)
         tools_menu.addSeparator()
@@ -574,9 +574,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
-        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("https://electrum.dash.org"))
+        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("https://www.vpubchain.net/insight/"))
         help_menu.addSeparator()
-        help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("https://docs.dash.org/en/latest/wallets/index.html#dash-electrum-wallet")).setShortcut(QKeySequence.HelpContents)
+        help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("https://www.vpubchain.net/insight/")).setShortcut(QKeySequence.HelpContents)
         self._auto_crash_reports = QAction(_("&Automated Crash Reports"), self, checkable=True)
         self._auto_crash_reports.setChecked(self.config.get(BaseCrashReporter.config_key, default=False))
         self._auto_crash_reports.triggered.connect(self.auto_crash_reports)
@@ -595,14 +595,14 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         d = self.network.get_donation_address()
         if d:
             host = self.network.get_parameters()[0]
-            self.pay_to_URI('dash:%s?message=donation for %s'%(d, host))
+            self.pay_to_URI('vp:%s?message=donation for %s'%(d, host))
         else:
             self.show_error(_('No donation address for this server'))
 
     def show_about(self):
-        QMessageBox.about(self, "Dash-Electrum",
+        QMessageBox.about(self, "VPubChain-Wallet",
                           (_("Version")+" %s" % self.wallet.electrum_version + "\n\n" +
-                           _("Electrum's focus is speed, with low resource usage and simplifying Dash.") + " " +
+                           _("VPubChain's focus is speed, with low resource usage and simplifying Dash.") + " " +
                            _("You do not need to perform regular backups, because your wallet can be "
                               "recovered from a secret phrase that you can memorize or write on paper.") + " " +
                            _("Startup times are instant because it operates in conjunction with high-performance "
@@ -612,11 +612,11 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
     def show_report_bug(self):
         msg = ' '.join([
             _("Please report any bugs as issues on github:<br/>"),
-            "<a href=\"https://github.com/akhavr/electrum-dash/issues\">https://github.com/akhavr/electrum-dash/issues</a><br/><br/>",
-            _("Before reporting a bug, upgrade to the most recent version of Dash-Electrum (latest release or git HEAD), and include the version number in your report."),
+            "<a href=\"https://github.com/vpubchain/vpub/issues\">https://github.com/vpubchain/vpub/issues</a><br/><br/>",
+            _("Before reporting a bug, upgrade to the most recent version of VPubChain-Wallet (latest release or git HEAD), and include the version number in your report."),
             _("Try to explain not only what the bug is, but how it occurs.")
          ])
-        self.show_message(msg, title="Dash-Electrum - " + _("Reporting Bugs"))
+        self.show_message(msg, title="VPubChain-Wallet - " + _("Reporting Bugs"))
 
     def notify_transactions(self):
         if not self.network or not self.network.is_connected():
@@ -646,9 +646,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if self.tray:
             try:
                 # this requires Qt 5.9
-                self.tray.showMessage("Dash-Electrum", message, QIcon(":icons/electrum_dark_icon"), 20000)
+                self.tray.showMessage("VPubChain-Wallet", message, QIcon(":icons/electrum_dark_icon"), 20000)
             except TypeError:
-                self.tray.showMessage("Dash-Electrum", message, QSystemTrayIcon.Information, 20000)
+                self.tray.showMessage("VPubChain-Wallet", message, QSystemTrayIcon.Information, 20000)
 
 
 
@@ -864,7 +864,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             _('Expiration date of your request.'),
             _('This information is seen by the recipient if you send them a signed payment request.'),
             _('Expired requests have to be deleted manually from your list, in order to free the corresponding Dash addresses.'),
-            _('The Dash address never expires and will always be part of this Dash-Electrum wallet.'),
+            _('The VPubChain address never expires and will always be part of this VPubChain wallet.'),
         ])
         grid.addWidget(HelpLabel(_('Request expires'), msg), 3, 0)
         grid.addWidget(self.expires_combo, 3, 1)
@@ -1200,7 +1200,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         def feerounding_onclick():
             text = (self.feerounding_text + '\n\n' +
-                    _('To somewhat protect your privacy, Dash-Electrum tries to create change with similar precision to other outputs.') + ' ' +
+                    _('To somewhat protect your privacy, VPubChain-Wallet tries to create change with similar precision to other outputs.') + ' ' +
                     _('At most 100 duffs might be lost due to this rounding.') + ' ' +
                     _("You can disable this setting in '{}'.").format(_('Preferences')) + '\n' +
                     _('Also, dust is not kept as change, but added to the fee.'))
@@ -2204,7 +2204,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 "private key, and verifying with the corresponding public key. The "
                 "address you have entered does not have a unique public key, so these "
                 "operations cannot be performed.") + '\n\n' + \
-               _('The operation is undefined. Not just in Dash-Electrum, but in general.')
+               _('The operation is undefined. Not just in VPubChain-Wallet, but in general.')
 
     @protected
     def do_sign(self, address, message, signature, password):
@@ -2369,7 +2369,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             tx = tx_from_str(txt)
             return Transaction(tx)
         except BaseException as e:
-            self.show_critical(_("Dash-Electrum was unable to parse your transaction") + ":\n" + str(e))
+            self.show_critical(_("VPubChain-Wallet was unable to parse your transaction") + ":\n" + str(e))
             return
 
     def read_tx_from_qrcode(self):
@@ -2382,7 +2382,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if not data:
             return
         # if the user scanned a dash URI
-        if str(data).startswith("dash:"):
+        #if str(data).startswith("dash:"):
+        if str(data).startswith("vpub:"):
             self.pay_to_URI(data)
             return
         # else if the user scanned an offline signed tx
@@ -2404,7 +2405,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             with open(fileName, "r") as f:
                 file_content = f.read()
         except (ValueError, IOError, os.error) as reason:
-            self.show_critical(_("Dash-Electrum was unable to open your transaction file") + "\n" + str(reason), title=_("Unable to read file or no transaction found"))
+            self.show_critical(_("VPubChain-Wallet was unable to open your transaction file") + "\n" + str(reason), title=_("Unable to read file or no transaction found"))
             return
         return self.tx_from_text(file_content)
 
@@ -2515,7 +2516,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.do_export_privkeys(filename, private_keys, csv_button.isChecked())
         except (IOError, os.error) as reason:
             txt = "\n".join([
-                _("Dash-Electrum was unable to produce a private key-export."),
+                _("VPubChain-Wallet was unable to produce a private key-export."),
                 str(reason)
             ])
             self.show_critical(txt, title=_("Unable to create csv"))
@@ -3059,7 +3060,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         run_hook('close_settings_dialog')
         if self.need_restart:
-            self.show_warning(_('Please restart Dash-Electrum to activate the new GUI settings'), title=_('Success'))
+            self.show_warning(_('Please restart VPubChain-Wallet to activate the new GUI settings'), title=_('Success'))
 
 
     def closeEvent(self, event):
@@ -3086,7 +3087,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.gui_object.close_window(self)
 
     def plugins_dialog(self):
-        self.pluginsdialog = d = WindowModalDialog(self, _('Dash-Electrum Plugins'))
+        self.pluginsdialog = d = WindowModalDialog(self, _('VPubChain-Wallet Plugins'))
 
         plugins = self.gui_object.plugins
 

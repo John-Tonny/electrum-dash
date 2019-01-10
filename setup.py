@@ -21,7 +21,7 @@ with open('contrib/requirements/requirements-hw.txt') as f:
 version = imp.load_source('version', 'electrum_dash/version.py')
 
 if sys.version_info[:3] < (3, 4, 0):
-    sys.exit("Error: Dash-Electrum requires Python version >= 3.4.0...")
+    sys.exit("Error: VPubChain-Electrum requires Python version >= 3.4.0...")
 
 data_files = []
 
@@ -69,7 +69,7 @@ class CustomInstallCommand(install):
 
 
 setup(
-    name="VPubChain-Electrum",
+    name="VPubChain",
     version=version.ELECTRUM_VERSION,
     install_requires=requirements,
     extras_require=extras_require,
@@ -92,7 +92,7 @@ setup(
     data_files=data_files,
     description="Lightweight VPubChain Wallet",
     maintainer="vpubchain",
-    maintainer_email="szlhtao@tom.com",
+    maintainer_email="support@vpubchain.net",
     license="MIT License",
     url="https://www.vpubchain.net/insight",
     long_description="""Lightweight VPubChain Wallet""",

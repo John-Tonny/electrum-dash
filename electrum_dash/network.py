@@ -1138,7 +1138,8 @@ class Network(util.DaemonThread):
 
             server_version, protocol_version = version
             if not server_version.startswith('ElectrumX '):
-                raise Exception('Not ElectrumX server')
+            #if not server_version.startswith('VPubChainX '):
+                raise Exception('Not VPubChainX server')
 
             if protocol_version != PROTOCOL_VERSION:
                 raise Exception('Electrum protocol not equals %s' % PROTOCOL_VERSION)

@@ -2,13 +2,13 @@
 # sudo desktop-file-install electrum-dash.desktop
 
 [Desktop Entry]
-Comment=Dash-Electrum Wallet
+Comment=VPubChain Wallet
 Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\" electrum-dash %u"
-GenericName[en_US]=Dash-Electrum
-GenericName=Dash-Electrum
+GenericName[en_US]=VPubChain Wallet
+GenericName=VPubChain Wallet
 Icon=electrum-dash
-Name[en_US]=Dash-Electrum Wallet
-Name=Dash-Electrum Wallet
+Name[en_US]=VPubChain Wallet
+Name=VPubChain Wallet
 Categories=Network;
 StartupNotify=false
 Terminal=false

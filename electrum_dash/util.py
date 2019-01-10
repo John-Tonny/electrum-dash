@@ -469,11 +469,11 @@ def user_dir():
     if 'ANDROID_DATA' in os.environ:
         return android_check_data_dir()
     elif os.name == 'posix':
-        return os.path.join(os.environ["HOME"], ".electrum-dash")
+        return os.path.join(os.environ["HOME"], ".vpubchain-wallet")
     elif "APPDATA" in os.environ:
-        return os.path.join(os.environ["APPDATA"], "Electrum-DASH")
+        return os.path.join(os.environ["APPDATA"], "VPubChain-Wallet")
     elif "LOCALAPPDATA" in os.environ:
-        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-DASH")
+        return os.path.join(os.environ["LOCALAPPDATA"], "VPubChain-Wallet")
     else:
         #raise Exception("No home directory found in environment variables.")
         return
@@ -635,7 +635,8 @@ def parse_URI(uri, on_pr=None):
         return {'address': uri}
 
     u = urllib.parse.urlparse(uri)
-    if u.scheme != 'dash':
+    #if u.scheme != 'dash':
+    if u.scheme != 'vpub':
         raise Exception("Not a Dash URI")
     address = u.path
 
@@ -703,7 +704,8 @@ def create_URI(addr, amount, message):
         query.append('amount=%s'%format_satoshis_plain(amount))
     if message:
         query.append('message=%s'%urllib.parse.quote(message))
-    p = urllib.parse.ParseResult(scheme='dash', netloc='', path=addr, params='', query='&'.join(query), fragment='')
+    #p = urllib.parse.ParseResult(scheme='dash', netloc='', path=addr, params='', query='&'.join(query), fragment='')
+    p = urllib.parse.ParseResult(scheme='vpub', netloc='', path=addr, params='', query='&'.join(query), fragment='')
     return urllib.parse.urlunparse(p)
 
 
